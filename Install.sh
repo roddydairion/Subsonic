@@ -1,4 +1,5 @@
 #!/bin/bash
+export PATH=$PATH:/usr/local/bin
 #sudo yum install java-1.7.0-openjdk
 subsonicURL="http://subsonic.org/download/"
 subsonicFILE="subsonic-6.0.beta2.rpm"
