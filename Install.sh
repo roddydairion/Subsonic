@@ -10,8 +10,9 @@ then
 else
 	subFile="$text"
 fi
-echo "${subsonicURL}${subFile}"
-#wget "${subsonicURL}${subFile}"
-#sudo yum install --nogpgcheck "${subsonicFILE}"
-#sudo yum remove subsonic
-#rm -rf "${subsonicURL}${subsonicFILE}"
+#echo "${subsonicURL}${subFile}"
+wget "${subsonicURL}${subFile}"
+sudo yum install --nogpgcheck "${subsonicFILE}"
+sudo yum remove subsonic
+rm -rf "${subsonicFILE}"
+sudo iptables -I INPUT -p tcp --dport 4040 -j ACCEPT
