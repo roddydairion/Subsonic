@@ -12,8 +12,10 @@ else
 	subFile="$text"
 fi
 #echo "${subsonicURL}${subFile}"
+echo "Removing old Subsonic installation"
+sudo yum remove -y subsonic
 wget "${subsonicURL}${subFile}"
 sudo yum install -y --nogpgcheck "${subsonicFILE}"
-sudo yum remove -y subsonic
+
 rm -rf "${subsonicFILE}"
 sudo iptables -I INPUT -p tcp --dport 4040 -j ACCEPT
