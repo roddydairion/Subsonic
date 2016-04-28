@@ -13,7 +13,7 @@ else
 fi
 #echo "${subsonicURL}${subFile}"
 wget "${subsonicURL}${subFile}"
-sudo yum install --nogpgcheck "${subsonicFILE}"
-sudo yum remove subsonic
+sudo yum install -y --nogpgcheck "${subsonicFILE}"
+sudo yum remove -y subsonic
 rm -rf "${subsonicFILE}"
 sudo iptables -I INPUT -p tcp --dport 4040 -j ACCEPT
