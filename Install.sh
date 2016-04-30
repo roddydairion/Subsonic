@@ -63,13 +63,13 @@ detect_os ()
 main()
 {
 	detect_os
+	export PATH=$PATH:/usr/local/bin
 	filename=$(curl -sIkL https://sourceforge.net/projects/subsonic/files/latest/download?source=files | sed -r '/filename=/!d;s/.*filename=(.*)$/\1/')
 	formatfile=$(echo "${filename}" | sed 's/\"//g')
 
 	IFS='-' read -ra SEP <<< "$formatfile"
 
-	echo "${SEP[0]}-${SEP[1]}"
-	
+
 	if [ $os == "centos" ]
 	then
 		extension="rpm"
@@ -80,26 +80,34 @@ main()
 		echo "No extension found!"
 	fi
 
-	#export PATH=$PATH:/usr/local/bin
-	#echo "Removing old Subsonic installation"
-	#sudo yum remove -y subsonic
-	#sudo yum install -y java-1.7.0-openjdk
-	#subsonicURL="http://subsonic.org/download/"
-	#subsonicFILE="subsonic-6.0.beta2.rpm"
+	echo "Removing old Subsonic installation"
+	sudo yum remove -y subsonic
+	sudo yum install -y java-1.7.0-openjdk
+	subsonicURL="http://subsonic.org/download/"
+	subsonicFILE="subsonic-6.0.beta2.rpm"
 
-	#echo -n "Enter subsonic file name to download (Leave blank to download latest version): "
-	#read text
-	#if [ -z "$text"]
-	#then
-	#	$(wget -O ~/subsonic.rpm https://sourceforge.net/projects/subsonic/files/latest/download?source=files)
-	#	subsonicFILE="subsonic.rpm"
-	#else
-	#	wget "${subsonicURL}${subFile}"
-	#fi
+	echo -n "Enter subsonic file name to download (Leave blank to download latest version): "
+	read text
+	if [ -z "$text"]
+	then
+		$(wget https://sourceforge.net/projects/subsonic/files/subsonic/${SEP[1]}/${SEP[0]-${SEP[1]}.${extension}/download)
+		subsonicFILE="${SEP[0]-${SEP[1]}.${extension}"
+	else
+		wget "${subsonicURL}${subFile}"
+	fi
 
-	#sudo yum install -y --nogpgcheck "~/${subsonicFILE}"
-	#rm -rf "~/${subsonicFILE}"
-	#sudo iptables -I INPUT -p tcp --dport 4040 -j ACCEPT
+	if [ $os == "centos" ]
+	then
+		sudo yum install -y --nogpgcheck "${subsonicFILE}"
+	elif [ $os == "ubuntu"]
+	then
+		sudo dpkg -i "${subsonicFILE}"
+	else
+		echo "No package to install!"
+	fi
+	
+	rm -rf "${subsonicFILE}"
+	sudo iptables -I INPUT -p tcp --dport 4040 -j ACCEPT
 }
 
 main
