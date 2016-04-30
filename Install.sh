@@ -91,7 +91,7 @@ main()
 	if [ -z "$text"]
 	then
 		$(wget https://sourceforge.net/projects/subsonic/files/subsonic/${SEP[1]}/${SEP[0]-${SEP[1]}.${extension}/download)
-		subsonicFILE="${SEP[0]-${SEP[1]}.${extension}"
+		subsonicFILE="${SEP[0]}-${SEP[1]}.${extension}"
 	else
 		wget "${subsonicURL}${subFile}"
 	fi
