@@ -67,7 +67,7 @@ main()
 	formatfile=$(echo "${filename}" | sed 's/\"//g')
 
 	oIFS="$IFS"; IFS=';' 
-	set -A str $formatfile
+	set -a str $formatfile
 	IFS="$oIFS"
 
 	echo "strings count = ${#str[@]}"
