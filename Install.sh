@@ -10,12 +10,12 @@ echo -n "Enter subsonic file name to download (Leave blank to download latest ve
 read text
 if [ -z "$text"]
 then
-	$(wget -O ../subsonic.rpm https://sourceforge.net/projects/subsonic/files/latest/download?source=files)
+	$(wget -O ~/subsonic.rpm https://sourceforge.net/projects/subsonic/files/latest/download?source=files)
 	subsonicFILE="subsonic.rpm"
 else
 	wget "${subsonicURL}${subFile}"
 fi
 
-sudo yum install -y --nogpgcheck "${subsonicFILE}"
-rm -rf "${subsonicFILE}"
+sudo yum install -y --nogpgcheck "~/${subsonicFILE}"
+rm -rf "~/${subsonicFILE}"
 sudo iptables -I INPUT -p tcp --dport 4040 -j ACCEPT
