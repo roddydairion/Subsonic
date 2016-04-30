@@ -24,10 +24,11 @@ main()
 		sudo apt-get remove -y subsonic
 		sudo apt-get install -y openjdk-7-jdk
 	else
-		echo "No extension found!"
+		$(wget -O --content-disposition https://sourceforge.net/projects/subsonic/files/latest/download?source=files)
+		tar -xvzf "${filename}"
+		echo -e "\nDownload Standalone version. Go to http://www.subsonic.org/pages/installation.jsp#standalone, to configure Subsonic."
+		exit
 	fi
-
-	
 	
 	subsonicURL="http://subsonic.org/download/"
 	subsonicFILE="subsonic-6.0.beta2.rpm"
@@ -50,10 +51,10 @@ main()
 		sudo dpkg -i "${subsonicFILE}"
 	else
 		echo "No package to install!"
+		exit
 	fi
 	
 	rm -rf "${subsonicFILE}"
-	sudo iptables -I INPUT -p tcp --dport 4040 -j ACCEPT
 }
 
 main
