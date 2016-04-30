@@ -59,3 +59,8 @@ detect_os ()
   echo "Detected operating system as ${os}/${dist}."
   #rpm -Uvh 
 }
+
+main()
+{
+  
+}
