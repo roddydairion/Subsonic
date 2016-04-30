@@ -79,7 +79,7 @@ main()
 	then
 		extension="deb"
 		sudo apt-get remove -y subsonic
-		sudo apt-get install -y java-1.7.0-openjdk
+		sudo apt-get install -y openjdk-7-jdk
 	else
 		echo "No extension found!"
 	fi
