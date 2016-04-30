@@ -64,7 +64,8 @@ main()
 {
 	detect_os
 	filename=$(curl -sIkL https://sourceforge.net/projects/subsonic/files/latest/download?source=files | sed -r '/filename=/!d;s/.*filename=(.*)$/\1/')
-	echo "${filename}" | sed 's/\"//g'
+	formatfile="${filename}" | sed 's/\"//g'
+	echo "${formatfile}"
 	if [ $os == "centos" ]
 	then
 		extension="rpm"
