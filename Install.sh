@@ -72,7 +72,7 @@ main()
 		extension="deb"
 	else
 		echo "No extension found!"
-
+	fi
 
 	#export PATH=$PATH:/usr/local/bin
 	#echo "Removing old Subsonic installation"
