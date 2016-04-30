@@ -66,7 +66,7 @@ main()
 	filename=$(curl -sIkL https://sourceforge.net/projects/subsonic/files/latest/download?source=files | sed -r '/filename=/!d;s/.*filename=(.*)$/\1/')
 	formatfile=$(echo "${filename}" | sed 's/\"//g')
 	#@arr = split(/./, $formatfile);
-	extension="${format##*.}"
+	extension="${formatfile##*.}"
 	echo "${extension}"
 	if [ $os == "centos" ]
 	then
