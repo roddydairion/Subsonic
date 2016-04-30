@@ -68,10 +68,7 @@ main()
 
 	IFS='-' read -ra SEP <<< "$formatfile"
 
-	for i in "${SEP[@]}";
-	do
-		echo $i
-	done
+	echo "${SEP[0]}-${SEP[1]}"
 	
 	if [ $os == "centos" ]
 	then
