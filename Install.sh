@@ -69,20 +69,23 @@ main()
 
 	IFS='-' read -ra SEP <<< "$formatfile"
 
-
+	echo "Removing old Subsonic installation"
 	if [ $os == "centos" ]
 	then
 		extension="rpm"
+		sudo yum remove -y subsonic
+		sudo yum install -y java-1.7.0-openjdk
 	elif [ $os == "ubuntu"]
 	then
 		extension="deb"
+		sudo apt-get remove -y subsonic
+		sudo apt-get install -y java-1.7.0-openjdk
 	else
 		echo "No extension found!"
 	fi
 
-	echo "Removing old Subsonic installation"
-	sudo yum remove -y subsonic
-	sudo yum install -y java-1.7.0-openjdk
+	
+	
 	subsonicURL="http://subsonic.org/download/"
 	subsonicFILE="subsonic-6.0.beta2.rpm"
 
