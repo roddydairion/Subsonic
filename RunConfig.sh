@@ -2,6 +2,9 @@
 DIR="${BASH_SOURCE%/*}"
 if [[ ! -d "$DIR" ]]; then DIR="$PWD"; fi
 . "$DIR/Common.sh"
+
+detect_os
+
 export PATH=$PATH:/usr/local/bin
 
 service subsonic stop
