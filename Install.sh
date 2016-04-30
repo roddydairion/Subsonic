@@ -26,7 +26,7 @@ main()
 	else
 		$(wget -O --content-disposition https://sourceforge.net/projects/subsonic/files/latest/download?source=files)
 		tar -xvzf "${filename}"
-		echo -e "\nDownload Standalone version. Go to http://www.subsonic.org/pages/installation.jsp#standalone, to configure Subsonic."
+		echo -e "\nDownloaded Standalone version. Go to http://www.subsonic.org/pages/installation.jsp#standalone, to configure Subsonic."
 		exit
 	fi
 	
@@ -55,6 +55,7 @@ main()
 	fi
 	
 	rm -rf "${subsonicFILE}"
+	./RunConfig.sh
 }
 
 main
