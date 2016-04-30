@@ -66,7 +66,7 @@ main()
 	filename=$(curl -sIkL https://sourceforge.net/projects/subsonic/files/latest/download?source=files | sed -r '/filename=/!d;s/.*filename=(.*)$/\1/')
 	formatfile=$(echo "${filename}" | sed 's/\"//g')
 
-	oIFS="$IFS"; IFS=';' 
+	oIFS="$IFS"; IFS='.' 
 	set -a str $formatfile
 	IFS="$oIFS"
 
