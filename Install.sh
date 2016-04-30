@@ -102,7 +102,7 @@ main()
 	if [ $os == "centos" ]
 	then
 		sudo yum install -y --nogpgcheck "${subsonicFILE}"
-	elif [ $os == "ubuntu"]
+	elif [ $os == "ubuntu" ]
 	then
 		sudo dpkg -i "${subsonicFILE}"
 	else
