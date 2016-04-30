@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 detect_os ()
 {
   if [[ ( -z "${os}" ) && ( -z "${dist}" ) ]]; then
