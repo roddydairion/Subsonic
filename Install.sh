@@ -65,7 +65,15 @@ main()
 	detect_os
 	filename=$(curl -sIkL https://sourceforge.net/projects/subsonic/files/latest/download?source=files | sed -r '/filename=/!d;s/.*filename=(.*)$/\1/')
 	formatfile=$(echo "${filename}" | sed 's/\"//g')
-	@arr = split(/./, $formatfile)
+
+	oIFS="$IFS"; IFS=';' 
+	set -A str $formatfile
+	IFS="$oIFS"
+
+	echo "strings count = ${#str[@]}"
+	echo "first : ${str[0]}";
+	echo "second: ${str[1]}";
+	echo "third : ${str[2]}";
 	
 	if [ $os == "centos" ]
 	then
