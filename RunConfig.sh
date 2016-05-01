@@ -10,6 +10,7 @@ export PATH=$PATH:/usr/local/bin
 service subsonic stop
 useradd --system syssubsonic
 gpasswd --add syssubsonic audio
+gpasswd --add syssubsonic video
 
 if [ $os == "centos" ]
 then
